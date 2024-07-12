@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/util/spring-context.xsd">
+        
+        
+        <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dmds">        
+        <property name="url" value="jdbc:mysql://localhost:3306/wipro_db"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>        
+        </bean>
+        
+        <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jt">
+        <property name="dataSource" ref="dmds"/>        
+        </bean>
+               
+           
+        <bean class="com.wipro.spring.dao.DoctorDaoImpl" id="doctorDao">
+        <property name="jdbcTemplate" ref="jt"></property>
+        </bean>    
+                   
+</beans>
